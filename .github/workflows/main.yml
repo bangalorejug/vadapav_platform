@@ -6,8 +6,6 @@ name: Java CI with Maven
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -36,13 +34,12 @@ jobs:
         source: "./jre.tar.gz"
         target: ${{ secrets.SOFTWARES_DIR }}
         strip_components: 1
-#     - name: Deploy
-#       uses: appleboy/ssh-action@master
-#       with:
-#         host: ${{ secrets.HOST }}
-#         username: ${{ secrets.USERNAME }}
-#         key: ${{ secrets.KEY }}
-# #         passphrase: ${{ secrets.PASSPHRASE }}
-#         target: ${{ secrets.SOFTWARES_DIR }}
-#         script:
-#           cd ${{ secrets.SOFTWARES_DIR }} && rm -rf jre jre && tar xvf jre.tar.gz jre && rm jre.tar.gz
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        target: ${{ secrets.SOFTWARES_DIR }}
+        script:
+          cd ${{ secrets.SOFTWARES_DIR }} && rm -rf jre jre && tar xvf jre.tar.gz jre && rm jre.tar.gz
