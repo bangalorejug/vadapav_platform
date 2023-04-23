@@ -32,18 +32,17 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-#         passphrase: ${{ secrets.PASSPHRASE }}
+        password: ${{ secrets.PASSWORD }}
         source: "./jre.tar.gz"
         target: ${{ secrets.SOFTWARES_DIR }}
         strip_components: 1
-    - name: Deploy
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-#         passphrase: ${{ secrets.PASSPHRASE }}
-        target: ${{ secrets.SOFTWARES_DIR }}
-        script:
-          cd ${{ secrets.SOFTWARES_DIR }} && rm -rf jre jre && tar xvf jre.tar.gz jre && rm jre.tar.gz
+#     - name: Deploy
+#       uses: appleboy/ssh-action@master
+#       with:
+#         host: ${{ secrets.HOST }}
+#         username: ${{ secrets.USERNAME }}
+#         key: ${{ secrets.KEY }}
+# #         passphrase: ${{ secrets.PASSPHRASE }}
+#         target: ${{ secrets.SOFTWARES_DIR }}
+#         script:
+#           cd ${{ secrets.SOFTWARES_DIR }} && rm -rf jre jre && tar xvf jre.tar.gz jre && rm jre.tar.gz
